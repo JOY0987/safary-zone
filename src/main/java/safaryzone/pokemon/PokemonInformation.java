@@ -108,6 +108,15 @@ public class PokemonInformation {
         this.level += exp;
     }
 
+    /**
+     * 저장 파일을 불러올 때
+     * 플레이어가 소지한 포켓몬들의 레벨을 저장 파일의 레벨로 설정해줍니다.
+     * @param saveLevel
+     */
+    public void setSaveLevel(int saveLevel) {
+        this.level = saveLevel;
+    }
+
     @Override
     public String toString() {
         return "📕 도감 번호 : [" + bookNumber + "]\n"
