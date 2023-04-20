@@ -5,7 +5,7 @@ import safaryzone.pokemon.books.NormalPokemonBooks;
 import safaryzone.pokemon.pokemon.Pokemon;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -15,7 +15,7 @@ public class PokemonList implements Serializable {
     protected final Map<Integer, Pokemon> pokemonList;
 
     public PokemonList() {
-        this.pokemonList = new HashMap<>();
+        this.pokemonList = new LinkedHashMap<>();
         initialize();
     }
 

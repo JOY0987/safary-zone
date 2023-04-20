@@ -17,11 +17,12 @@ public class LoadFile {
     private final InputView inputView;
     private final OutputView outputView;
     private Player player;
-
+    private PokemonLevelSave pokemonLevelSave;
 
     public LoadFile() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.pokemonLevelSave = new PokemonLevelSave();
     }
 
     public boolean loadFile(String fileName) {
@@ -29,6 +30,7 @@ public class LoadFile {
                      = new FileInputStream(PATH + "/" + fileName + ".sav")) {
             ObjectInputStream ois = new ObjectInputStream(fis);
             Player.load((Player) ois.readObject());
+
         } catch (FileNotFoundException e) {
             return false;
         } catch (IOException e) {

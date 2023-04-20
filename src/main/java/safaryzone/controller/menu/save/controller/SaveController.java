@@ -3,6 +3,7 @@ package safaryzone.controller.menu.save.controller;
 import safaryzone.controller.menu.save.Path;
 import safaryzone.controller.menu.save.exception.ErrormessageSave;
 import safaryzone.controller.menu.save.service.LoadFile;
+import safaryzone.controller.menu.save.service.PokemonLevelSave;
 import safaryzone.controller.menu.save.service.SaveFile;
 import safaryzone.controller.menu.save.view.InputValidate;
 import safaryzone.controller.menu.save.view.InputView;
@@ -24,6 +25,7 @@ public class SaveController {
     private final InputValidate inputValidate;
     private final LoadFile loadFile;
     private final SaveFile saveFile;
+    private PokemonLevelSave pokemonLevelSave;
 
     public SaveController() {
         this.outputView = new OutputView();
@@ -31,6 +33,7 @@ public class SaveController {
         this.loadFile = new LoadFile();
         this.saveFile = new SaveFile();
         this.inputValidate = new InputValidate();
+        this.pokemonLevelSave = new PokemonLevelSave();
     }
 
     public void start() {
@@ -88,16 +91,15 @@ public class SaveController {
         else ErrormessageSave.SAVE_ERROR_MESSAGE.print();
     }
 
-    private void fileDuplicate() {
-
-    }
-
     public void load() {
         outputView.fileList();
         loadFile.fileList();
         outputView.loadFile();
         String loadFileName = inputView.inputFileName();
-        if (loadFile.loadFile(loadFileName)) outputView.loadSuccess();
+        if (loadFile.loadFile(loadFileName)) {
+            pokemonLevelSave.loadPokemonLevel();
+            outputView.loadSuccess();
+        }
         else ErrormessageSave.LOAD_ERROR_MESSAGE.print();
     }
 

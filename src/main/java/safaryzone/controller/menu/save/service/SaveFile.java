@@ -1,12 +1,13 @@
 package safaryzone.controller.menu.save.service;
 
-import safaryzone.controller.menu.save.Path;
 import safaryzone.controller.menu.save.view.InputValidate;
 import safaryzone.controller.menu.save.view.InputView;
 import safaryzone.controller.menu.save.view.OutputView;
 import safaryzone.user.Player;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static safaryzone.controller.menu.save.Path.PATH;
 
@@ -20,17 +21,23 @@ public class SaveFile {
     private final InputView inputView;
     private final OutputView outputView;
     private final InputValidate inputValidate;
+    private PokemonLevelSave pokemonLevelSave;
+    private List pokemonLevelList;
 
     public SaveFile() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.inputValidate = new InputValidate();
+        this.pokemonLevelSave = new PokemonLevelSave();
+        this.pokemonLevelList = new ArrayList();
     }
 
     public boolean saveFile(String fileName) {
-        // 기존 플레이어 객체 가져오기
+        // 소지한 포켓몬의 레벨을 리스트로 저장하고, 플레이어 클래스 내 포켓몬 레벨 리스트로 set
+        pokemonLevelList = pokemonLevelSave.savePokemonLevel();
+        Player.getInstance().setPokemonLevelList(pokemonLevelList);
+        // 입력한 파일명으로 플레이어 객체 저장
         Player savePlayer = Player.getInstance();
-        // 입력한 파일명으로 기존 플레이어 객체 저장
         try (FileOutputStream fos
                      = new FileOutputStream(PATH + "/" + fileName + ".sav")) {
 
