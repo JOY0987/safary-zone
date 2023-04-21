@@ -13,7 +13,7 @@ import java.util.List;
  */
 // TODO : Player 객체 저장을 위해 직렬화클래스 상속받았습니다.
 public class Player implements Serializable {
-//    private static final long serialVersionUID = -4955373051569284522L;
+    private static final long serialVersionUID = -4955373051569284522L;
     private static Player instance;
     private final int START_LEVEL = 1;
     //    private final int START_LEVEL = 10; // TODO : TEST LKD

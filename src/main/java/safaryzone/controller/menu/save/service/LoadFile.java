@@ -32,10 +32,13 @@ public class LoadFile {
             Player.load((Player) ois.readObject());
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             return false;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             return false;
         }
         return true;
